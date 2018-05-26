@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/layui.css">
+</head>
+<body>
+
+
+<div class="layui-container">
+    常规布局（以中型屏幕桌面为例）：
+    <div class="layui-row">
+        <div class="layui-col-md9">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>时间</th>
+                    <th>表名</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${list}">
+                    <td>${item.name}</td>
+                    <td>${item.createTime}</td>
+                    <td>${item.tableName}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="pager"></div>
+        </div>
+        <div class="layui-col-md3">
+            你的内容 3/12
+        </div>
+    </div>
+</div>
+
+<script src="layui.js"></script>
+<script>
+    //一般直接写在一个js文件中
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+
+        layer.msg('Hello World');
+    });
+    layui.use('laypage', function(){
+        var laypage = layui.laypage;
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'pager' //注意，这里的 test1 是 ID，不用加 # 号
+            ,count: 50 //数据总数，从服务端得到
+        });
+    });
+</script>
+</body>
+</html>
